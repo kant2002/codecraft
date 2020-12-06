@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Aicup2020\aicup2020.csproj" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<AdditionalFiles Include="../stylecop.json" />
+	</ItemGroup>
+
+	<!--<ItemGroup>
+		<PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.304">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>-->
+
+</Project>

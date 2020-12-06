@@ -12,10 +12,11 @@ namespace Aicup2020
     {
         private BinaryReader reader;
         private BinaryWriter writer;
+        private TcpClient client;
 
         public Runner(string host, int port, string token)
         {
-            var client = new TcpClient(host, port) { NoDelay = true };
+            this.client = new TcpClient(host, port) { NoDelay = true };
             var stream = new BufferedStream(client.GetStream());
             this.reader = new BinaryReader(stream);
             this.writer = new BinaryWriter(stream);
@@ -58,6 +59,11 @@ namespace Aicup2020
                         throw new Exception("Unexpected server message");
                 }
             }
+        }
+
+        public void Stop()
+        {
+            client.Close();
         }
     }
 }
