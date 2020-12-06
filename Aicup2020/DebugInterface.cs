@@ -8,8 +8,8 @@ namespace Aicup2020
 
     public class DebugInterface
     {
-        private BinaryWriter writer;
-        private BinaryReader reader;
+        private readonly BinaryWriter writer;
+        private readonly BinaryReader reader;
 
         public DebugInterface(BinaryReader reader, BinaryWriter writer)
         {

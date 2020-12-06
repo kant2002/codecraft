@@ -10,28 +10,20 @@ namespace Aicup2020
 
     public class Runner
     {
-        private BinaryReader reader;
-        private BinaryWriter writer;
-        private TcpClient client;
+        private readonly BinaryReader reader;
+        private readonly BinaryWriter writer;
+        private readonly TcpClient client;
 
         public Runner(string host, int port, string token)
         {
             this.client = new TcpClient(host, port) { NoDelay = true };
-            var stream = new BufferedStream(client.GetStream());
+            var stream = new BufferedStream(this.client.GetStream());
             this.reader = new BinaryReader(stream);
             this.writer = new BinaryWriter(stream);
             var tokenData = System.Text.Encoding.UTF8.GetBytes(token);
             this.writer.Write(tokenData.Length);
             this.writer.Write(tokenData);
             this.writer.Flush();
-        }
-
-        public static void Main(string[] args)
-        {
-            string host = args.Length < 1 ? "127.0.0.1" : args[0];
-            int port = args.Length < 2 ? 31001 : int.Parse(args[1]);
-            string token = args.Length < 3 ? "0000000000000000" : args[2];
-            new Runner(host, port, token).Run();
         }
 
         public void Run()
@@ -63,7 +55,7 @@ namespace Aicup2020
 
         public void Stop()
         {
-            client.Close();
+            this.client.Close();
         }
     }
 }
